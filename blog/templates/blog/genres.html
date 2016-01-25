@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load mptt_tags %}
+
+{% block title %}Genres hiérarchiques{% endblock %}
+
+{% block content %}
+<ul>
+    {% recursetree nodes %}
+        <li>
+            {{ node.name }} {{ node.budget }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+{% endblock %}

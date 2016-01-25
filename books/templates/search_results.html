@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Book search{% endblock %}
+
+{% block content %}
+
+    <p>You searched for: <strong>{{ query }}</strong></p>
+
+    {% if books %}
+        <p>Found {{ books|length }} book{{ books|pluralize }}.</p>
+        <ul>
+            {% for book in books %}
+            <li>{{ book.title }}
+                    <br>
+                    written by: {{ book.authors.first_name}} {{ book.authors.last_name}}
+                    <br>
+                    and published by: {{ book.publisher}}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books matched your search criteria.</p>
+    {% endif %}
+
+{% endblock %}

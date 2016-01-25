@@ -1,0 +1,22 @@
+{%extends "base.html" %}
+
+{%block title %}{{ username }}{% endblock %}
+
+{%block head %}Banks & accounts for {{ username }}{% endblock %}
+
+{%block content %}
+
+    {% if accounts %}
+        <ul>
+        {% for account in accounts %}
+            <li>{{account.bank.name_of_bank }}  ===>
+                <a href="/transactions/{{account.num_of_account}}">{{account.num_of_account}}</a> --
+                <a href="/transactions/{{account.num_of_account}}">{{account.name_of_account}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No banks found.</p>
+    {% endif %}
+
+{% endblock %}

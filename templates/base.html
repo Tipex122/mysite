@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <h1>My Beautiful site</h1>
+    {% if user.username %}
+        <p>Welcome {{ user.username }}!
+            Here you can access to your accounts and associated transactions !</p>
+    {% else %}
+        <p>Welcome anonymous user!
+            You need to <a href="/login/">login</a>
+            before you can access to your accounts.</p>
+    {% endif %}
+
+    <hr>
+
+    {% block head%}{% endblock %}
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+        <hr>
+        <p>Thanks for visiting my site.
+            {% if user.username %}
+                <a href="/logout/">logout</a>
+            {% else %}
+                <a href="/login/">login</a>
+            {% endif %}
+        </p>
+    {% endblock %}
+
+</body>
+
+</html>

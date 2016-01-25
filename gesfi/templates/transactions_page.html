@@ -1,0 +1,22 @@
+{%extends "base.html" %}
+
+{%block title %}{{ transactions.account.name_of_account }}{% endblock %}
+
+{%block head %}Transactions for {{ transactions.account.name_of_account }}{% endblock %}
+
+{%block content %}
+
+    {% if transactions %}
+        <ul>
+        {% for transaction in transactions %}
+            <li>{{transaction.date_of_transaction }}: </li>
+            {{transaction.name_of_transaction }}
+            <br> {{transaction.amount_of_transaction }}
+
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No transactions found.</p>
+    {% endif %}
+
+{% endblock %}
