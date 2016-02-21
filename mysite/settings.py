@@ -43,6 +43,7 @@ INSTALLED_APPS = (
 #    'csvimport.app.CSVImportConf',  # use AppConfig for django >=1.7 csvimport >=2.2
 #    'csvimporter',
     'mptt',
+    'django_mptt_admin'
 #    'books',
 )
 

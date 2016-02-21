@@ -5,6 +5,7 @@ from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
 
 
+
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -53,6 +54,18 @@ class Category(MPTTModel):
 
     def __str__(self):              # __unicode__ on Python 2
         return self.name
+
+    def save(self, *args, **kwargs):
+            #do_something()
+            ## TODO: incrémenter ancestor.amount =+ self.amount
+            ancestors = self.get_ancestors(True)
+            if ancestors:
+                for ancestor in ancestors:
+                    ancestor.amount = ancestor.amount+self.amount
+                    ancestor.save()
+
+            super(Category, self).save(*args, **kwargs) # Call the "real" save() method.
+
 
 
 class Product(models.Model):
